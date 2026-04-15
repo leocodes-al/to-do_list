@@ -19,21 +19,26 @@ function exibirTarefa() {
   let novaLi = ''
 
     /* percorrendo array e adicioanando na novaLi */
-  listaTarefa.forEach(tarefa => {
+  listaTarefa.forEach((tarefa, posicao) => {
     novaLi = novaLi + `
 
     <li class="task">
       <img src="./img/checked.png" alt="check-na-tarefa">
       <p>${tarefa}</p>
-      <img src="./img/trash.png" alt="tarefa-para-o-lixo">
+      <img src="./img/trash.png" alt="tarefa-para-o-lixo" onclick= "deletarItem(${posicao})">
     </li>
     `
   })
-
     /* enviando novaLi para o documento */
   listaCompleta.innerHTML = novaLi
 }
 
+/* deletando atraves da posição guardado na lixeira */
+function deletarItem(posicao){
+  listaTarefa.splice(posicao, 1)
+
+  exibirTarefa()
+}
 
 /* chamando function */
 button.addEventListener('click', adicionarTarefa)
